@@ -12,13 +12,27 @@ pip install --upgrade git+https://github.com/bearloga/interleaved-python.git@mai
 
 ```python
 from interleaved import load_example_data
+
+data = load_example_data(preference='a') # alternatively: 'none' or 'b'
+
+data.head()
+```
+
+```
+                  timestamp   search_id  event  position ranking_function
+0 2018-08-01 00:01:31+00:00  p2tvgm3clu   serp       NaN              NaN
+1 2018-08-01 00:04:09+00:00  p2tvgm3clu  click      14.0                A
+2 2018-08-01 00:04:29+00:00  p2tvgm3clu  click       4.0                A
+3 2018-08-01 00:06:10+00:00  p2tvgm3clu  click       1.0                A
+4 2018-08-01 00:06:42+00:00  p2tvgm3clu  click       7.0                B
+```
+
+```python
 from interleaved import Experiment
 
-example = load_example_data(preference='a') # alternatively: 'none' or 'b'
-
 ex = Experiment(
-    queries = example[example['event'] == 'click']['search_id'].to_numpy(),
-    clicks = example[example['event'] == 'click']['ranking_function'].to_numpy()
+    queries = data[data['event'] == 'click']['search_id'].to_numpy(),
+    clicks = data[data['event'] == 'click']['ranking_function'].to_numpy()
 )
 ex.bootstrap(seed=42)
 
