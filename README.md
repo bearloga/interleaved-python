@@ -60,7 +60,7 @@ Quite a strong preference for that new algorithm!
 - `.conf_int(conf_level=0.95, rescale=False)` returns the confidence interval based on the bootstrapped distribution
 
 **Note**: `rescale=True` rescales the preference statistic from [-0.5, 0.5] scale to a [-1, 1] scale,
-which may have with interpretability.
+which may help with interpretability of the results.
 
 ## References
 
